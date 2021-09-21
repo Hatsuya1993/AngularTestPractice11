@@ -1,5 +1,6 @@
 import { browser } from "protractor";
 import { Home } from "../pageObject/home";
+import { ClickItem } from "../helper/click"
 
 describe('Test computer website', () => {
 
@@ -16,6 +17,12 @@ describe('Test computer website', () => {
     })
 
     it('Check if the url is correct', async() => {
+        expect(await browser.getCurrentUrl()).toContain('computers')
+    })
+
+    fit('Check when the title is clicked will redirect to the home page', async () => {
+        let home = new Home()
+        await ClickItem.clickLink(home.title)
         expect(await browser.getCurrentUrl()).toContain('computers')
     })
 
