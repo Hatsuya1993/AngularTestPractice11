@@ -14,5 +14,6 @@ export  class ClickItem {
         await browser.wait(EC.visibilityOf(data), globalData["WAIT_TIME"]["WAIT_LONG"])
         await browser.sleep(globalData["WAIT_TIME"]["WAIT_SHORT"])
         await data.click()
+        await browser.sleep(globalData["WAIT_TIME"]["WAIT_SHORT"])
     }
 }

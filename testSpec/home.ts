@@ -20,10 +20,16 @@ describe('Test computer website', () => {
         expect(await browser.getCurrentUrl()).toContain('computers')
     })
 
-    fit('Check when the title is clicked will redirect to the home page', async () => {
+    it('Check when the title is clicked will redirect to the home page', async () => {
         let home = new Home()
         await ClickItem.clickLink(home.title)
         expect(await browser.getCurrentUrl()).toContain('computers')
+    })
+
+    fit('Check when the computer name is clicked, it moved to another page', async () => {
+        let home = new Home()
+        await home.traverseComputerName("ACE")
+        expect(await (await browser.getCurrentUrl()).split("/")[await (await browser.getCurrentUrl()).split("/").length -1 ]).toBeGreaterThan(0)
     })
 
 })
