@@ -1,6 +1,7 @@
 import { browser } from "protractor";
 import { Home } from "../pageObject/home";
 import { ClickItem } from "../helper/click"
+import { EditComputer } from "../pageObject/editComputer"
 
 describe('Test computer website', () => {
 
@@ -26,10 +27,18 @@ describe('Test computer website', () => {
         expect(await browser.getCurrentUrl()).toContain('computers')
     })
 
-    fit('Check when the computer name is clicked, it moved to another page', async () => {
+    it('Check when the computer name is clicked, it moved to another page', async () => {
         let home = new Home()
         await home.traverseComputerName("ACE")
         expect(await (await browser.getCurrentUrl()).split("/")[await (await browser.getCurrentUrl()).split("/").length -1 ]).toBeGreaterThan(0)
+    })
+
+    fit('Check the name set in the column matches with the data inside', async () => {
+        let home = new Home()
+        let editComputer = new EditComputer()
+        let check = "ACE"
+        await home.traverseComputerName(check)
+        expect(await editComputer.computerName.getAttribute('value')).toBe(check)
     })
 
 })
