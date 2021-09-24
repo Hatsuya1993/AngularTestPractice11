@@ -33,7 +33,7 @@ describe('Test computer website', () => {
         expect(await (await browser.getCurrentUrl()).split("/")[await (await browser.getCurrentUrl()).split("/").length -1 ]).toBeGreaterThan(0)
     })
 
-    fit('Check the name set in the column matches with the data inside', async () => {
+    it('Check the name set in the column matches with the data inside', async () => {
         let home = new Home()
         let editComputer = new EditComputer()
         let check = "ACE"
@@ -41,4 +41,19 @@ describe('Test computer website', () => {
         expect(await editComputer.computerName.getAttribute('value')).toBe(check)
     })
 
+    it('Check the introduced value when its empty', async () => {
+        let home = new Home()
+        let editComputer = new EditComputer()
+        let check = "ACE"
+        await home.traverseComputerName(check)
+        expect(await editComputer.introduced.getAttribute('value')).toBe('')
+    })
+
+    fit('Check the discontinued value when its empty', async () => {
+        let home = new Home()
+        let editComputer = new EditComputer()
+        let check = "ACE"
+        await home.traverseComputerName(check)
+        expect(await editComputer.discontinued.getAttribute('value')).toBe('')
+    })
 })
