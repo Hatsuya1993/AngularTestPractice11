@@ -3,6 +3,7 @@ import { Home } from "../pageObject/home";
 import { ClickItem } from "../helper/click"
 import { EditComputer } from "../pageObject/editComputer"
 
+
 describe('Test computer website', () => {
 
     beforeEach(async() => {
@@ -49,11 +50,39 @@ describe('Test computer website', () => {
         expect(await editComputer.introduced.getAttribute('value')).toBe('')
     })
 
-    fit('Check the discontinued value when its empty', async () => {
+    it('Check the discontinued value when its empty', async () => {
         let home = new Home()
         let editComputer = new EditComputer()
         let check = "ACE"
         await home.traverseComputerName(check)
         expect(await editComputer.discontinued.getAttribute('value')).toBe('')
     })
+
+    it('Check if the delete button is clickable', async () => {
+        let home = new Home()
+        let editComputer = new EditComputer()
+        let check = "ACE"
+        await home.traverseComputerName(check)
+        let results = await ClickItem.Clickable(editComputer.delete)
+        expect(results).toBeTruthy()
+    })
+
+    fit('Check if the save button is clickable', async () => {
+        let home = new Home()
+        let editComputer = new EditComputer()
+        let check = "ACE"
+        await home.traverseComputerName(check)
+        let results = await ClickItem.Clickable(editComputer.save)
+        expect(results).toBeTruthy()
+    })
+
+    fit('Check if the cancel button is clickable', async () => {
+        let home = new Home()
+        let editComputer = new EditComputer()
+        let check = "ACE"
+        await home.traverseComputerName(check)
+        let results = await ClickItem.Clickable(editComputer.cancel)
+        expect(results).toBeTruthy()
+    })
+
 })

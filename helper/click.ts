@@ -13,7 +13,17 @@ export  class ClickItem {
         await browser.sleep(globalData["WAIT_TIME"]["WAIT_SHORT"])
         await browser.wait(EC.visibilityOf(data), globalData["WAIT_TIME"]["WAIT_LONG"])
         await browser.sleep(globalData["WAIT_TIME"]["WAIT_SHORT"])
+        await this.Clickable(data)
         await data.click()
         await browser.sleep(globalData["WAIT_TIME"]["WAIT_SHORT"])
     }
+
+    static async Clickable (data: ElementFinder) {
+        await browser.sleep(globalData["WAIT_TIME"]["WAIT_SHORT"])
+        await browser.wait(EC.elementToBeClickable(data), globalData["WAIT_TIME"]["WAIT_LONG"])
+        await browser.sleep(globalData["WAIT_TIME"]["WAIT_SHORT"])
+        return true
+    }
+
+
 }
