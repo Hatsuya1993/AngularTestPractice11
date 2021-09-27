@@ -20,5 +20,6 @@ export let config: Config = {
     // Options to be passed to Jasmine-node.
     jasmineNodeOpts: {
       showColors: true, // Use colors in the command line report.
+      defaultTimeoutInterval: 2500000
     }
   };

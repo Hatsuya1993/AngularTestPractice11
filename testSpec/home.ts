@@ -67,7 +67,7 @@ describe('Test computer website', () => {
         expect(results).toBeTruthy()
     })
 
-    fit('Check if the save button is clickable', async () => {
+    it('Check if the save button is clickable', async () => {
         let home = new Home()
         let editComputer = new EditComputer()
         let check = "ACE"
@@ -76,13 +76,23 @@ describe('Test computer website', () => {
         expect(results).toBeTruthy()
     })
 
-    fit('Check if the cancel button is clickable', async () => {
+    it('Check if the cancel button is clickable', async () => {
         let home = new Home()
         let editComputer = new EditComputer()
         let check = "ACE"
         await home.traverseComputerName(check)
         let results = await ClickItem.Clickable(editComputer.cancel)
         expect(results).toBeTruthy()
+    })
+
+    it('Check if the cancel button is clicked, user will return to homepage', async () => {
+        let home = new Home()
+        let editComputer = new EditComputer()
+        let check = "ACE"
+        await home.traverseComputerName(check)
+        let results = await ClickItem.Clickable(editComputer.cancel)
+        if(results) await ClickItem.clickLink(editComputer.cancel)
+        expect(await browser.getCurrentUrl()).toContain('computers')
     })
 
 })
