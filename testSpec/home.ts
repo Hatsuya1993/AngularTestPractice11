@@ -95,4 +95,15 @@ describe('Test computer website', () => {
         expect(await browser.getCurrentUrl()).toContain('computers')
     })
 
+    it('Check when add new computer is clicked, all inputs are empty by default', async () => {
+        let home = new Home()
+        let editComputer = new EditComputer()
+        let results = await ClickItem.Clickable(home.addNewComputer)
+        if(results) await ClickItem.clickLink(home.addNewComputer)
+        expect(await editComputer.computerName.getAttribute('value')).toBe('')
+        expect(await editComputer.introduced.getAttribute('value')).toBe('')
+        expect(await editComputer.discontinued.getAttribute('value')).toBe('')
+        expect(await editComputer.company.getAttribute('value')).toBe('')
+    })
+
 })

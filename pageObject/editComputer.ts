@@ -9,6 +9,7 @@ export class EditComputer {
     delete: ElementFinder
     save: ElementFinder
     cancel : ElementFinder
+    company: ElementFinder
 
     constructor(private readonly $main = $("#main")) {
         this.computerName = this.$main.$("#name")
@@ -17,6 +18,7 @@ export class EditComputer {
         this.delete = this.$main.$("input[value*='Delete']")
         this.save = this.$main.$("input[value*=Save]")
         this.cancel = this.$main.$("a[href*=computers]")
+        this.company = this.$main.$("#company")
     }
 
 }
