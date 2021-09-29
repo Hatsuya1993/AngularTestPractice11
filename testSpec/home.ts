@@ -2,6 +2,8 @@ import { browser } from "protractor";
 import { Home } from "../pageObject/home";
 import { ClickItem } from "../helper/click"
 import { EditComputer } from "../pageObject/editComputer"
+import { AddComputer } from "../pageObject/addComputer";
+import { globalData } from "../helper/global"
 
 
 describe('Test computer website', () => {
@@ -95,7 +97,7 @@ describe('Test computer website', () => {
         expect(await browser.getCurrentUrl()).toContain('computers')
     })
 
-    fit('Check when add new computer is clicked, url is correct', async () => {
+    it('Check when add new computer is clicked, url is correct', async () => {
         let home = new Home()
         let results = await ClickItem.Clickable(home.addNewComputer)
         if(results) await ClickItem.clickLink(home.addNewComputer)
@@ -111,6 +113,17 @@ describe('Test computer website', () => {
         expect(await editComputer.introduced.getAttribute('value')).toBe('')
         expect(await editComputer.discontinued.getAttribute('value')).toBe('')
         expect(await editComputer.company.getAttribute('value')).toBe('')
+    })
+
+    fit('When no input is given to the computer name, error will appear', async () => {
+        let home = new Home()
+        let addComputer = new AddComputer()
+        let results = await ClickItem.Clickable(home.addNewComputer)
+        if(results) await ClickItem.clickLink(home.addNewComputer)
+        let resultsCreate = await ClickItem.Clickable(addComputer.create)
+        if(resultsCreate) await ClickItem.clickLink(addComputer.create)
+        await browser.sleep(globalData["WAIT_TIME"]["WAIT_SHORT"])
+        expect(await addComputer.errorName.isDisplayed()).toBeTruthy()
     })
 
 })
