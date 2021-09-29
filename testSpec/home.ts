@@ -95,6 +95,13 @@ describe('Test computer website', () => {
         expect(await browser.getCurrentUrl()).toContain('computers')
     })
 
+    fit('Check when add new computer is clicked, url is correct', async () => {
+        let home = new Home()
+        let results = await ClickItem.Clickable(home.addNewComputer)
+        if(results) await ClickItem.clickLink(home.addNewComputer)
+        expect(await browser.getCurrentUrl()).toContain('new')
+    })
+
     it('Check when add new computer is clicked, all inputs are empty by default', async () => {
         let home = new Home()
         let editComputer = new EditComputer()
