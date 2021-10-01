@@ -115,7 +115,7 @@ describe('Test computer website', () => {
         expect(await editComputer.company.getAttribute('value')).toBe('')
     })
 
-    fit('When no input is given to the computer name, error will appear', async () => {
+    it('When no input is given to the computer name, error will appear', async () => {
         let home = new Home()
         let addComputer = new AddComputer()
         let results = await ClickItem.Clickable(home.addNewComputer)
@@ -124,6 +124,18 @@ describe('Test computer website', () => {
         if(resultsCreate) await ClickItem.clickLink(addComputer.create)
         await browser.sleep(globalData["WAIT_TIME"]["WAIT_SHORT"])
         expect(await addComputer.errorName.isDisplayed()).toBeTruthy()
+    })
+
+    fit('When conputer name is added and create is clicked, alert will appear', async () => {
+        let home = new Home()
+        let addComputer = new AddComputer()
+        let results = await ClickItem.Clickable(home.addNewComputer)
+        if(results) await ClickItem.clickLink(home.addNewComputer)
+        await addComputer.computerName.sendKeys('Test')
+        await addComputer.create.click()
+        await browser.sleep(globalData["WAIT_TIME"]["WAIT_SHORT"])
+        expect(await home.alertMessage.isDisplayed()).toBeTruthy()
+
     })
 
 })

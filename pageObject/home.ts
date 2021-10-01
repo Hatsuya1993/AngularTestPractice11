@@ -8,12 +8,14 @@ export class Home {
     title : ElementFinder
     computerName : ElementArrayFinder
     addNewComputer: ElementFinder
+    alertMessage: ElementFinder
 
     constructor(private readonly $main = $("#main")) {
         this.website = browser.get("https://computer-database.gatling.io/computers")
         this.title = this.$main.element(by.linkText("Computer database"))
         this.computerName = this.$main.$$("tbody tr td")
         this.addNewComputer = this.$main.$("#add")
+        this.alertMessage = this.$main.$(".alert-message.warning")
     }
 
     async traverseComputerName(name : string) {
