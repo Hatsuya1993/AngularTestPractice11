@@ -126,7 +126,7 @@ describe('Test computer website', () => {
         expect(await addComputer.errorName.isDisplayed()).toBeTruthy()
     })
 
-    fit('When conputer name is added and create is clicked, alert will appear', async () => {
+    it('When conputer name is added and create is clicked, alert will appear', async () => {
         let home = new Home()
         let addComputer = new AddComputer()
         let results = await ClickItem.Clickable(home.addNewComputer)
@@ -135,7 +135,16 @@ describe('Test computer website', () => {
         await addComputer.create.click()
         await browser.sleep(globalData["WAIT_TIME"]["WAIT_SHORT"])
         expect(await home.alertMessage.isDisplayed()).toBeTruthy()
+    })
 
+    it('When computer name is added and cancel is clicked, retrun to homepage', async () => {
+        let home = new Home()
+        let addComputer = new AddComputer()
+        let results = await ClickItem.Clickable(home.addNewComputer)
+        if(results) await ClickItem.clickLink(home.addNewComputer)
+        await addComputer.computerName.sendKeys('Test')
+        await addComputer.cancel.click()
+        expect(await browser.getCurrentUrl()).toContain('computers')
     })
 
 })
