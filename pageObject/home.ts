@@ -12,6 +12,7 @@ export class Home {
     alertMessage: ElementFinder
     search: ElementFinder
     filterButton: ElementFinder
+    titleHeader: ElementFinder
 
     constructor(private readonly $main = $("#main")) {
         this.website = browser.get("https://computer-database.gatling.io/computers")
@@ -21,6 +22,7 @@ export class Home {
         this.alertMessage = this.$main.$(".alert-message.warning")
         this.search = this.$main.$("#searchbox")
         this.filterButton = this.$main.$("#searchsubmit")
+        this.titleHeader = this.$main.$("h1")
     }
 
     async traverseComputerName(name : string) {
