@@ -147,4 +147,11 @@ describe('Test computer website', () => {
         expect(await browser.getCurrentUrl()).toContain('computers')
     })
 
+    fit('When a non-existent computer name is searched, the link will contain the searched name', async () => {
+        let home = new Home()
+        const test = "testData1"
+        await home.searchData(test)
+        expect(await browser.getCurrentUrl()).toContain(test)
+    })
+
 })
