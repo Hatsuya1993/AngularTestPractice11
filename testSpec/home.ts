@@ -24,9 +24,10 @@ describe('Test computer website', () => {
         expect(await browser.getCurrentUrl()).toContain('computers')
     })
 
-    it('Check when the title is clicked will redirect to the home page', async () => {
+    fit('Check when the title is clicked will redirect to the home page', async () => {
         let home = new Home()
-        await ClickItem.clickLink(home.title)
+        let results = await ClickItem.Clickable(home.title)
+        if (results) await ClickItem.clickLink(home.title)
         expect(await browser.getCurrentUrl()).toContain('computers')
     })
 
@@ -154,11 +155,18 @@ describe('Test computer website', () => {
         expect(await browser.getCurrentUrl()).toContain(test)
     })
 
-    fit('When a non-existant computer is searched, no computer will be displayed', async () => {
+    it('When a non-existant computer is searched, no computer will be displayed', async () => {
         let home = new Home()
         const test = "testData1"
         await home.searchData(test)
         expect(await home.titleHeader.getText()).toBe('No computer')
+    })
+
+    it('When a non-existant computer is searched, results will display nothing to display', async () => {
+        let home = new Home()
+        const test = "testData1"
+        await home.searchData(test)
+        expect(await home.results.getText()).toBe('Nothing to display')
     })
 
 })

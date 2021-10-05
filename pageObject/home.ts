@@ -13,16 +13,19 @@ export class Home {
     search: ElementFinder
     filterButton: ElementFinder
     titleHeader: ElementFinder
+    results: ElementFinder
 
     constructor(private readonly $main = $("#main")) {
         this.website = browser.get("https://computer-database.gatling.io/computers")
-        this.title = this.$main.element(by.linkText("Computer database"))
+        this.title = this.$main.$("a[href='/computers']")
         this.computerName = this.$main.$$("tbody tr td")
         this.addNewComputer = this.$main.$("#add")
         this.alertMessage = this.$main.$(".alert-message.warning")
         this.search = this.$main.$("#searchbox")
         this.filterButton = this.$main.$("#searchsubmit")
         this.titleHeader = this.$main.$("h1")
+        this.results = this.$main.$(".well em")
+
     }
 
     async traverseComputerName(name : string) {
