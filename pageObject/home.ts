@@ -14,6 +14,8 @@ export class Home {
     filterButton: ElementFinder
     titleHeader: ElementFinder
     results: ElementFinder
+    prev: ElementFinder
+    next: ElementFinder
 
     constructor(private readonly $main = $("#main")) {
         this.website = browser.get("https://computer-database.gatling.io/computers")
@@ -25,7 +27,8 @@ export class Home {
         this.filterButton = this.$main.$("#searchsubmit")
         this.titleHeader = this.$main.$("h1")
         this.results = this.$main.$(".well em")
-
+        this.prev = this.$main.$("li.prev")
+        this.next = this.$main.$("li.next")
     }
 
     async traverseComputerName(name : string) {

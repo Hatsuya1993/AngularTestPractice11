@@ -13,7 +13,7 @@ describe('Test computer website', () => {
         let home = new Home()
         await home.website
         browser.manage().window().maximize()
-        await browser.sleep(5000)
+        await browser.sleep(globalData["WAIT_TIME"]["WAIT_LONG"])
     })
 
     afterEach(async() => {
@@ -24,7 +24,7 @@ describe('Test computer website', () => {
         expect(await browser.getCurrentUrl()).toContain('computers')
     })
 
-    fit('Check when the title is clicked will redirect to the home page', async () => {
+    it('Check when the title is clicked will redirect to the home page', async () => {
         let home = new Home()
         let results = await ClickItem.Clickable(home.title)
         if (results) await ClickItem.clickLink(home.title)
@@ -167,6 +167,14 @@ describe('Test computer website', () => {
         const test = "testData1"
         await home.searchData(test)
         expect(await home.results.getText()).toBe('Nothing to display')
+    })
+
+    it('When there is no need for pagination, the next and previous button will be disabled', async () => {
+        let home = new Home()
+        const test = "testData1"
+        await home.searchData(test)
+        expect(await home.prev.getAttribute('class')).toContain("disabled")
+        expect(await home.next.getAttribute('class')).toContain("disabled")
     })
 
 })
