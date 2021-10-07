@@ -177,4 +177,11 @@ describe('Test computer website', () => {
         expect(await home.next.getAttribute('class')).toContain("disabled")
     })
 
+    fit('When there is nothing to display, the pagination should be displayed this way', async () => {
+        let home = new Home()
+        const test = "testData1"
+        await home.searchData(test)
+        expect(await home.pagination.getText()).toBe("Displaying 1 to 0 of 0")
+    })
+
 })

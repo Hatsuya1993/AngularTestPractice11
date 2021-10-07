@@ -16,6 +16,7 @@ export class Home {
     results: ElementFinder
     prev: ElementFinder
     next: ElementFinder
+    pagination: ElementFinder
 
     constructor(private readonly $main = $("#main")) {
         this.website = browser.get("https://computer-database.gatling.io/computers")
@@ -29,6 +30,7 @@ export class Home {
         this.results = this.$main.$(".well em")
         this.prev = this.$main.$("li.prev")
         this.next = this.$main.$("li.next")
+        this.pagination = this.$main.$(".current a")
     }
 
     async traverseComputerName(name : string) {
