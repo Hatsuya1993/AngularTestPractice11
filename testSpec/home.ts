@@ -177,11 +177,17 @@ describe('Test computer website', () => {
         expect(await home.next.getAttribute('class')).toContain("disabled")
     })
 
-    fit('When there is nothing to display, the pagination should be displayed this way', async () => {
+    it('When there is nothing to display, the pagination should be displayed this way', async () => {
         let home = new Home()
         const test = "testData1"
         await home.searchData(test)
         expect(await home.pagination.getText()).toBe("Displaying 1 to 0 of 0")
+    })
+
+    it('When page loads with default data, next button should be enable and prev button should be disable', async () => {
+        let home = new Home()
+        expect(await home.prev.getAttribute('class')).toContain("disabled")
+        expect(await home.next.getAttribute('class')).not.toContain("disabled")
     })
 
 })
