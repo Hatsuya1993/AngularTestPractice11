@@ -190,4 +190,11 @@ describe('Test computer website', () => {
         expect(await home.next.getAttribute('class')).not.toContain("disabled")
     })
 
+    it('When searched found results, a number of computers are found will be displayed', async () => {
+        let home = new Home()
+        const test = "ACE"
+        await home.searchData(test)
+        expect(await home.titleHeader.getText()).toContain('computers found')
+    })
+
 })
