@@ -17,6 +17,7 @@ export class Home {
     prev: ElementFinder
     next: ElementFinder
     pagination: ElementFinder
+    numberOfRows: ElementArrayFinder
 
     constructor(private readonly $main = $("#main")) {
         this.website = browser.get("https://computer-database.gatling.io/computers")
@@ -31,6 +32,7 @@ export class Home {
         this.prev = this.$main.$("li.prev")
         this.next = this.$main.$("li.next")
         this.pagination = this.$main.$(".current a")
+        this.numberOfRows = this.$main.$$("tbody tr")
     }
 
     async traverseComputerName(name : string) {

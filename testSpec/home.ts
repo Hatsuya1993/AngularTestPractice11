@@ -197,4 +197,11 @@ describe('Test computer website', () => {
         expect(await home.titleHeader.getText()).toContain('computers found')
     })
 
+    it('When searched found results, the number of computers found will match the number of results', async () => {
+        let home = new Home()
+        const test = "ACE"
+        await home.searchData(test)
+        expect(Number(await (await home.titleHeader.getText()).split(" ")[0])).toBe(await home.numberOfRows.count())
+    })
+
 })
