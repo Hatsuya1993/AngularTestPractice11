@@ -9,6 +9,7 @@ export class EditComputer {
     save: ElementFinder
     cancel : ElementFinder
     company: ElementFinder
+    errorMessage: ElementFinder
 
     constructor(private readonly $main = $("#main")) {
         this.computerName = this.$main.$("#name")
@@ -18,6 +19,7 @@ export class EditComputer {
         this.save = this.$main.$("input[value*=Save]")
         this.cancel = this.$main.$("a[href*=computers]")
         this.company = this.$main.$("#company")
+        this.errorMessage = this.$main.$("span.help-inline")
     }
 
     

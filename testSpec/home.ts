@@ -204,4 +204,14 @@ describe('Test computer website', () => {
         expect(Number(await (await home.titleHeader.getText()).split(" ")[0])).toBe(await home.numberOfRows.count())
     })
 
+    it('When an invalid value is given for introduced, error message will be displayed', async () => {
+        let home = new Home()
+        let editComputer = new EditComputer()
+        await home.traverseComputerName("ACE")
+        await editComputer.introduced.sendKeys("test")
+        let results = await ClickItem.Clickable(editComputer.save)
+        if(results) await ClickItem.clickLink(editComputer.save)
+        expect(await editComputer.errorMessage.isDisplayed()).toBeTruthy()
+    })
+
 })
