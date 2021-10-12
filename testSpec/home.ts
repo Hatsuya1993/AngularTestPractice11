@@ -214,4 +214,14 @@ describe('Test computer website', () => {
         expect(await editComputer.errorMessage.isDisplayed()).toBeTruthy()
     })
 
+    it('When an invalid value is given for discontinued, error message will be displayed', async () => {
+        let home = new Home()
+        let editComputer = new EditComputer()
+        await home.traverseComputerName("ACE")
+        await editComputer.discontinued.sendKeys("test")
+        let results = await ClickItem.Clickable(editComputer.save)
+        if(results) await ClickItem.clickLink(editComputer.save)
+        expect(await editComputer.errorMessage.isDisplayed()).toBeTruthy()
+    })
+
 })
