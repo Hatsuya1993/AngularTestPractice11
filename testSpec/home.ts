@@ -255,7 +255,7 @@ describe('Test computer website', () => {
         expect(await editComputer.errorMessage.isDisplayed()).toBeTruthy()
     })
 
-    it('When an invalid month is given for introduced, error message will appear', async () => {
+    it('When an invalid month is given for discontinued, error message will appear', async () => {
         let home = new Home()
         let editComputer = new EditComputer()
         await home.traverseComputerName("ACE")
@@ -265,11 +265,21 @@ describe('Test computer website', () => {
         expect(await editComputer.errorMessage.isDisplayed()).toBeTruthy()
     })
 
-    fit('When an invalid day is given for introduced, error message will appear', async () => {
+    it('When an invalid day is given for introduced, error message will appear', async () => {
         let home = new Home()
         let editComputer = new EditComputer()
         await home.traverseComputerName("ACE")
         await editComputer.introduced.sendKeys("2021-01-99")
+        let results = await ClickItem.Clickable(editComputer.save)
+        if(results) await ClickItem.clickLink(editComputer.save)
+        expect(await editComputer.errorMessage.isDisplayed()).toBeTruthy()
+    })
+
+    fit('When an invalid day is given for discontinued, error message will appear', async () => {
+        let home = new Home()
+        let editComputer = new EditComputer()
+        await home.traverseComputerName("ACE")
+        await editComputer.discontinued.sendKeys("2021-01-99")
         let results = await ClickItem.Clickable(editComputer.save)
         if(results) await ClickItem.clickLink(editComputer.save)
         expect(await editComputer.errorMessage.isDisplayed()).toBeTruthy()
