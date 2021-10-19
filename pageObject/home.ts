@@ -18,6 +18,7 @@ export class Home {
     next: ElementFinder
     pagination: ElementFinder
     numberOfRows: ElementArrayFinder
+    updatedAlert: ElementFinder
 
     constructor(private readonly $main = $("#main")) {
         this.website = browser.get("https://computer-database.gatling.io/computers")
@@ -33,6 +34,7 @@ export class Home {
         this.next = this.$main.$("li.next")
         this.pagination = this.$main.$(".current a")
         this.numberOfRows = this.$main.$$("tbody tr")
+        this.updatedAlert = this.$main.$(".alert-message.warning")
     }
 
     async traverseComputerName(name : string) {
