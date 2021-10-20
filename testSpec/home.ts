@@ -295,4 +295,14 @@ describe('Test computer website', () => {
         expect(await home.updatedAlert.isDisplayed()).toBeTruthy()
     })
 
+    it('When a valid date is given for discontinued, alert message success will be displayed', async () => {
+        let home = new Home()
+        let editComputer = new EditComputer()
+        await home.traverseComputerName("ACE")
+        await editComputer.discontinued.sendKeys("2021-01-01")
+        let results = await ClickItem.Clickable(editComputer.save)
+        if(results) await ClickItem.clickLink(editComputer.save)
+        expect(await home.updatedAlert.isDisplayed()).toBeTruthy()
+    })
+
 })
