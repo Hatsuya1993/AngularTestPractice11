@@ -316,12 +316,23 @@ describe('Test computer website', () => {
         expect(await editComputer.errorMessage.isDisplayed()).toBeTruthy()
     })
 
-    fit('When month discontinued is before introduced, alert message success will be displayed', async () => {
+    it('When month discontinued is before introduced, alert message success will be displayed', async () => {
         let home = new Home()
         let editComputer = new EditComputer()
         await home.traverseComputerName("ACE")
         await editComputer.discontinued.sendKeys("2021-01-01")
         await editComputer.introduced.sendKeys("2021-02-01")
+        let results = await ClickItem.Clickable(editComputer.save)
+        if(results) await ClickItem.clickLink(editComputer.save)
+        expect(await editComputer.errorMessage.isDisplayed()).toBeTruthy()
+    })
+
+    fit('When year discontinued is before introduced, alert message success will be displayed', async () => {
+        let home = new Home()
+        let editComputer = new EditComputer()
+        await home.traverseComputerName("ACE")
+        await editComputer.discontinued.sendKeys("2021-01-01")
+        await editComputer.introduced.sendKeys("2022-01-01")
         let results = await ClickItem.Clickable(editComputer.save)
         if(results) await ClickItem.clickLink(editComputer.save)
         expect(await editComputer.errorMessage.isDisplayed()).toBeTruthy()
