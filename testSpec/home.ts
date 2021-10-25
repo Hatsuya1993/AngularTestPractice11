@@ -338,7 +338,7 @@ describe('Test computer website', () => {
         expect(await editComputer.errorMessage.isDisplayed()).toBeTruthy()
     })
 
-    fit('When date is correct for days, alert message success will be displayed', async () => {
+    it('When date is correct for days, alert message success will be displayed', async () => {
         let home = new Home()
         let editComputer = new EditComputer()
         await home.traverseComputerName("ACE")
@@ -347,6 +347,14 @@ describe('Test computer website', () => {
         let results = await ClickItem.Clickable(editComputer.save)
         if(results) await ClickItem.clickLink(editComputer.save)
         expect(await home.updatedAlert.isDisplayed()).toBeTruthy()
+    })
+
+    it('When a company is selected from the drop down, the value will be displayed', async () => {
+        let home = new Home()
+        let editComputer = new EditComputer()
+        await home.traverseComputerName("ACE")
+        let value = await editComputer.selectCompany("Thinking Machines")
+        expect(value).toBe('Thinking Machines')
     })
 
 })
