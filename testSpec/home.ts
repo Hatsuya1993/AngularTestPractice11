@@ -357,4 +357,14 @@ describe('Test computer website', () => {
         expect(value).toBe('Thinking Machines')
     })
 
+    fit('When a company is selected from the drop down and submitted, alert message success will be displayed', async () => {
+        let home = new Home()
+        let editComputer = new EditComputer()
+        await home.traverseComputerName("ACE")
+        await editComputer.selectCompany("Thinking Machines")
+        let results = await ClickItem.Clickable(editComputer.save)
+        if(results) await ClickItem.clickLink(editComputer.save)
+        expect(await home.updatedAlert.isDisplayed()).toBeTruthy()
+    })
+
 })
