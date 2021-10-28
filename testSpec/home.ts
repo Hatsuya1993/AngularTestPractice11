@@ -367,7 +367,7 @@ describe('Test computer website', () => {
         expect(await home.updatedAlert.isDisplayed()).toBeTruthy()
     })
 
-    fit('When field introduced, discontinues and company is selected and submitted, alert message success will be displayed', async () => {
+    it('When field introduced, discontinues and company is selected and submitted, alert message success will be displayed', async () => {
         let home = new Home()
         let editComputer = new EditComputer()
         await home.traverseComputerName("ACE")
@@ -377,6 +377,13 @@ describe('Test computer website', () => {
         let results = await ClickItem.Clickable(editComputer.save)
         if(results) await ClickItem.clickLink(editComputer.save)
         expect(await home.updatedAlert.isDisplayed()).toBeTruthy()
+    })
+
+    fit('On the following page, the previous button should be enabled', async () => {
+        let home = new Home()
+        await home.next.click()
+        await browser.sleep(globalData["WAIT_TIME"]["WAIT_SHORT"])
+        expect(await home.prev.getAttribute('class')).not.toContain("disabled")
     })
 
 
