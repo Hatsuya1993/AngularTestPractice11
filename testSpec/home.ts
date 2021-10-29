@@ -379,11 +379,17 @@ describe('Test computer website', () => {
         expect(await home.updatedAlert.isDisplayed()).toBeTruthy()
     })
 
-    fit('On the following page, the previous button should be enabled', async () => {
+    it('On the following page, the previous button should be enabled', async () => {
         let home = new Home()
-        await home.next.click()
-        await browser.sleep(globalData["WAIT_TIME"]["WAIT_SHORT"])
+        if(await ClickItem.Clickable(home.next)) await ClickItem.clickLink(home.next)
         expect(await home.prev.getAttribute('class')).not.toContain("disabled")
+    })
+
+    it('When the previous button is clicked, it should redirect to the first page', async () => {
+        let home = new Home()
+        if(await ClickItem.Clickable(home.next)) await ClickItem.clickLink(home.next)
+        if(await ClickItem.Clickable(home.prev)) await ClickItem.clickLink(home.prev)
+        expect(await browser.getCurrentUrl()).toContain("p=0")
     })
 
 
