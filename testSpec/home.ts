@@ -392,7 +392,7 @@ describe('Test computer website', () => {
         expect(await browser.getCurrentUrl()).toContain("p=0")
     })
 
-    fit('When the next button is clicked, it should redirect to the second page', async () => {
+    it('When the next button is clicked, it should redirect to the second page', async () => {
         let home = new Home()
         if(await ClickItem.Clickable(home.next)) await ClickItem.clickLink(home.next)
         expect(await browser.getCurrentUrl()).toContain("p=1")
